@@ -5,21 +5,16 @@ import { Bloom, EffectComposer, SMAA } from "@react-three/postprocessing";
 import {Text, Sphere, Box, MeshReflectorMaterial, Text3D, useDetectGPU, PerformanceMonitor, RoundedBox} from "@react-three/drei";
 import { useEffect, useState,useRef } from "react";
 import gsap from "gsap";
-export default function Balls({move,row1,row2,row3,row4,row5,row6,row7,row8,row9,row10,row11,row12,row13,row14,row15,row16,row17,row18,row19,row20,row21
-      ,row22,row23,row24,row25,row26,row27,row28}){
+export default function Balls({row1,row2,row3,row4,row5,row6,row7,row8,row9,row10,row11,row12,row13,row14,row15,row16,row17,row18,row19,row20,row21
+      ,row22,row23,row26,row27,row28}){
       
     const GPUTier = useDetectGPU()
     const bgbtn=useRef()
-    useEffect(()=>{
-      if (move && GPUTier.fps>30 ){
-            bgbtn.current.position.z+=10
-            gsap.to(bgbtn.current.position,{y: -1, duration: 1, ease: "power1.out"})
-      }
-    },[move])
+    
     return(
         <>
             <EffectComposer
-        enabled={GPUTier.fps>30?true:false}
+        enabled={GPUTier.tier===1?true:false}
         depthBuffer={true}
         disableNormalPass={false}
         stencilBuffer={false}
@@ -27,9 +22,6 @@ export default function Balls({move,row1,row2,row3,row4,row5,row6,row7,row8,row9
       >
         <Bloom mipmapBlur intensity={0.02} luminanceThreshold={1} ></Bloom>
       </EffectComposer>
-      {GPUTier.fps>30 && <RoundedBox ref={bgbtn} scale={[7,2,0.01]} position={[0,8,151]} radius={0.30} creaseAngle={0.4} rotation={[60*(Math.PI/180),0,0]}>
-            <meshBasicMaterial toneMapped={true} color={[128,0,128]} reflectivity={1} />
-      </RoundedBox>}
             <Text3D position={[-11,24,-87]} scale={[6,5,4]} rotation={[0,90*(Math.PI/180),0]} font={'Montserrat Light_Italic.json'}>About
                 <meshBasicMaterial toneMapped={true} color={[255,255,255]} reflectivity={0} />
             </Text3D>
@@ -203,18 +195,8 @@ export default function Balls({move,row1,row2,row3,row4,row5,row6,row7,row8,row9
             <Sphere scale={[0.4, 0.4, 0.4]}   position={[11, 10, -35]}>
       <meshBasicMaterial reflectivity={0} color={[255,255,255]} toneMapped={true}  />
             </Sphere></>}
-            {row24 && <>  <Sphere scale={[0.4, 0.4, 0.4]}   position={[-11, 10, -42]}>
-      <meshBasicMaterial reflectivity={0} color={[255,255,255]} toneMapped={true}  />
-            </Sphere>
-            <Sphere scale={[0.4, 0.4, 0.4]}   position={[11, 10, -42]}>
-      <meshBasicMaterial reflectivity={0} color={[255,255,255]} toneMapped={true}  />
-            </Sphere></>}
-            {row25 && <> <Sphere scale={[0.4, 0.4, 0.4]}   position={[-11, 10, -49]}>
-      <meshBasicMaterial reflectivity={0} color={[255,255,255]} toneMapped={true}  />
-            </Sphere>
-            <Sphere scale={[0.4, 0.4, 0.4]}   position={[11, 10, -49]}>
-      <meshBasicMaterial reflectivity={0} color={[255,255,255]} toneMapped={true}  />
-            </Sphere></>}
+            
+            
             {row26 && <> <Sphere scale={[0.4, 0.4, 0.4]}   position={[-11, 10, 126]}>
       <meshBasicMaterial reflectivity={0} color={[255,255,255]} toneMapped={true}  />
             </Sphere>

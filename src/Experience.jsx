@@ -14,7 +14,7 @@ import Lamps from "./Lamps";
 import { Billboard } from "./Billboard";
 import RoadEnd from "./RoadEnd.jsx";
 import _ from "lodash";
-    export default function Experience({buttons,cam,controlcam,isWPressed,isSPressed,place,navbar}) {
+    export default function Experience({buttons,cam,controlcam,isWPressed,isSPressed,place,navbar,tutorial}) {
     const [driveable,setDriveable]=useState(false)
     const line1 = useRef();
     const line2 = useRef();
@@ -42,8 +42,6 @@ import _ from "lodash";
     const [row21, setrow21] = useState(false)
     const [row22, setrow22] = useState(false)
     const [row23, setrow23] = useState(false)
-    const [row24, setrow24] = useState(false)
-    const [row25, setrow25] = useState(false)
     const [row26, setrow26] = useState(false)
     const [row27, setrow27] = useState(false)
     const [row28, setrow28] = useState(false)
@@ -58,6 +56,7 @@ import _ from "lodash";
     const [moving,setMoving]=useState(false)
     
     useEffect(()=>{
+        // for navbar navigation
         if(driveable){
             if (place==='about')
                 {   setMoving(true)
@@ -105,23 +104,23 @@ import _ from "lodash";
         }
     },[place])
     useEffect(()=>{
-        controlcam.current.setLookAt(0, -2.5,4.5,0,8.5,0,true)
+        controlcam.current.setLookAt(0, -2.5,4.5,0,8.5,0,true) //initial camera look at
         
     },[])
-    
+    const tutorialimg=useRef()
     const enter = () => {
         // clicked on step in 
         // look in front
-        console.log(controlcam)
+        
         controlcam.current.setLookAt(0, 0,5,0,0,0,true)
         controlcam.current.maxDistance=0
-        controlcam.current.minDistance=6
+        controlcam.current.minDistance=40
         controlcam.current.minPolarAngle=90*(Math.PI/180)
         controlcam.current.maxPolarAngle=90*(Math.PI/180)
         controlcam.current.minAzimuthAngle=0*(Math.PI/180)
         controlcam.current.maxAzimuthAngle=5*(Math.PI/180)   
          //move text
-         setMoveBtn(true)
+         
         gsap.to(line1.current.position, {y: 10, duration: 1, ease: "power1.out"})
         gsap.to(line2.current.position, {y: 10, duration: 1, ease: "power1.out"})
         gsap.to(line3.current.position, {y: -1, duration: 1, ease: "power1.out"})
@@ -152,24 +151,26 @@ import _ from "lodash";
         _.delay(()=>{setrow21(true)},3950)
         _.delay(()=>{setrow22(true)},4000)
         _.delay(()=>{setrow23(true)},4050)
-        _.delay(()=>{setrow24(true)},4100)
-        _.delay(()=>{setrow25(true)},4150)
+        
         // move camera
-        gsap.to(cam.current.position, {z: 38, duration: 1, ease: 'power2.in',delay:1.1})
+        gsap.to(cam.current.position, {z: 38, duration: 4, ease: 'power2.in',delay:4.1})
+        
         _.delay(()=>{
             // show navbar and buttons
+            controlcam.current.setLookAt(8, -1,0,-15,5,-30,true)
             setDriveable(true)
             gsap.to(buttons.current, {opacity:0.7})
             gsap.to(navbar.current,{y:'14.9dvh',duration:1})
-            
-        },1150)
+        },8150)
 
         
     }
-    
+    const moveTutBtn=()=>{
+        if (!tutorial) gsap.to(tutorialimg.current.position,{y:-5})
+    }
     // set cam look at and move car
     const moveAndSetCamera=(lpx,lpy,lpz,tpx,tpy,tpz,mid,minAngle,maxAngle)=>{
-        
+        moveTutBtn()
         cam.current.position.z += 0.40
         CarRef.current.position.z -= 0.407
         gsap.to(CarRef.current.position,{x:mid,duration:1})
@@ -178,6 +179,7 @@ import _ from "lodash";
         controlcam.current.minAzimuthAngle=maxAngle*(Math.PI/180)
     }
         const moveAndSetCameraForS=(lpx,lpy,lpz,tpx,tpy,tpz,mid,minAngle,maxAngle)=>{
+            moveTutBtn()
             cam.current.position.z -= 0.40
             CarRef.current.position.z += 0.407
             gsap.to(CarRef.current.position,{x:mid,duration:1})
@@ -205,20 +207,20 @@ import _ from "lodash";
             }
             else if (CarRef.current.position.z<-155 && CarRef.current.position.z>-198) {  // car at projects billboard
                 moveAndSetCamera(17,8,cam.current.position.z-180,-10,10.5,cam.current.position.z-180,-5,0,90)
-                controlcam.current.minDistance=cam.current.position.z-55
-                controlcam.current.maxDistance=cam.current.position.z-45
+                controlcam.current.minDistance=cam.current.position.z-130
+                controlcam.current.maxDistance=cam.current.position.z-120
                 
             }
             else if (CarRef.current.position.z<-233 && CarRef.current.position.z>-276) {  // car at skills billboard
                 moveAndSetCamera(17,8,cam.current.position.z-260,-10,10.5,cam.current.position.z-260,-5,0,90)
-                controlcam.current.minDistance=cam.current.position.z-55
-                controlcam.current.maxDistance=cam.current.position.z-45
+                controlcam.current.minDistance=cam.current.position.z-200
+                controlcam.current.maxDistance=cam.current.position.z-190
                 
             }
             else if (CarRef.current.position.z<-311 && CarRef.current.position.z>-354) {  // car at connect billboard
                 moveAndSetCamera(17,8,cam.current.position.z-340,-10,10.5,cam.current.position.z-340,-5,0,90)
-                controlcam.current.minDistance=cam.current.position.z-55
-                controlcam.current.maxDistance=cam.current.position.z-45
+                controlcam.current.minDistance=cam.current.position.z-280
+                controlcam.current.maxDistance=cam.current.position.z-270
                 
             }
             else { // car not at billboard
@@ -245,18 +247,18 @@ import _ from "lodash";
             }
             else if (CarRef.current.position.z<-159 && CarRef.current.position.z>-198) {
                 moveAndSetCameraForS(17,8,cam.current.position.z-180,-10,10.5,cam.current.position.z-180,-5,0,90)
-                controlcam.current.minDistance=cam.current.position.z-55
-                controlcam.current.maxDistance=cam.current.position.z-45
+                controlcam.current.minDistance=cam.current.position.z-130
+                controlcam.current.maxDistance=cam.current.position.z-120
             }
             else if (CarRef.current.position.z<-237 && CarRef.current.position.z>-276) {
                 moveAndSetCameraForS(17,8,cam.current.position.z-260,-10,10.5,cam.current.position.z-260,-5,0,90)
-                controlcam.current.minDistance=cam.current.position.z-55
-                controlcam.current.maxDistance=cam.current.position.z-45
+                controlcam.current.minDistance=cam.current.position.z-200
+                controlcam.current.maxDistance=cam.current.position.z-190
             }
             else if (CarRef.current.position.z<-315 && CarRef.current.position.z>-354) {
                 moveAndSetCameraForS(17,8,cam.current.position.z-340,-10,10.5,cam.current.position.z-340,-5,0,90)
-                controlcam.current.minDistance=cam.current.position.z-55
-                controlcam.current.maxDistance=cam.current.position.z-45
+                controlcam.current.minDistance=cam.current.position.z-280
+                controlcam.current.maxDistance=cam.current.position.z-2270
             }
             else {
                 moveAndSetCameraForS(4,0,2,CarRef.current.position.x-10,CarRef.current.position.y,CarRef.current.position.z,0,0,10)
@@ -265,7 +267,7 @@ import _ from "lodash";
             }
         }
     })
-   const [moveBtn,setMoveBtn]=useState(false)
+   
     return (
         <>
 
@@ -288,17 +290,12 @@ import _ from "lodash";
         {/*<Skills / >*/}
             <Road scale={[3.5,1,15]} position={[0,0.1,-65]}/>
             <Road scale={[3.5,1,15]} position={[0,0.1,-250]}/>
-            <MainCar onClick={()=>{
-                console.log('main cam position is', cam.current.position)
-                console.log('control cam position is', controlcam.current.position)
-                console.log('maxdistance is',controlcam.current.maxDistance)
-                console.log('mindistance is',controlcam.current.minDistance)
-            }}  moving={moving}  w={isWPressed} s={isSPressed} car={CarRef}
+            <MainCar   moving={moving}  w={isWPressed} s={isSPressed} car={CarRef}
             position={[0,0,-50]} ref={CarRef}  rotation={[0,-110 * (Math.PI / 180),0]}
 
             />
-            <Balls move={moveBtn} row1={row1} row2={row2} row3={row3} row4={row4} row5={row5} row6={row6} row7={row7} row8={row8} row9={row9} row10={row10} row11={row11} row12={row12} row13={row13} row14={row14} row15={row15}
-                row16={row16} row17={row17} row18={row18} row19={row19} row20={row20} row21={row21} row22={row22} row23={row23} row24={row24} row25={row25} row26={row26} row27={row27} row28={row28}
+            <Balls  row1={row1} row2={row2} row3={row3} row4={row4} row5={row5} row6={row6} row7={row7} row8={row8} row9={row9} row10={row10} row11={row11} row12={row12} row13={row13} row14={row14} row15={row15}
+                row16={row16} row17={row17} row18={row18} row19={row19} row20={row20} row21={row21} row22={row22} row23={row23}  row26={row26} row27={row27} row28={row28}
             />
             <Lamps/>
             <Billboard position={[-10,-15,-100]}/>
@@ -311,14 +308,17 @@ import _ from "lodash";
             <Box position={[-10,21.2,-185]} scale={[0.1,16.3,9.5]}  onClick={()=>window.open('https://www.google.com/')} visible={false}></Box>
             <Box position={[-10,21.2,-195.1]} scale={[0.1,16.3,9.5]}  onClick={()=>window.open('https://www.google.com/')} visible={false}></Box>
 
+            {!navigator.maxTouchPoints>0 && <Image ref={tutorialimg}  url='Frame 16.png' scale={[15,5,1]} position={[-10,10,-50]} rotation={[0,50*(Math.PI/180),0]}/>}
+
+
             <Image url='about.jpg' scale={[42,17.5,1]} position={[-10,15,-100]} rotation={[0,90*(Math.PI/180),0]}/>
             <Image url='skills.jpg' scale={[42,17.5,1]} position={[-10,15,-260]} rotation={[0,90*(Math.PI/180),0]}/>
             <Image url='projects.jpg' scale={[42,17.5,1]} position={[-10,15,-180]} rotation={[0,90*(Math.PI/180),0]}/>
             <Image url='connect.jpg' scale={[42,17.5,1]} position={[-10,15,-340]} rotation={[0,90*(Math.PI/180),0]}/>
 
-            <Box position={[-10,16,-326]} scale={[0.1,6,5]}  onClick={()=>window.open('mailto:paritoshsagar25@gmail.com')} visible={true}></Box>
-            <Box position={[-10,16,-336]} scale={[0.1,6,5]}  onClick={()=>window.open('https://www.linkedin.com/in/paritosh-sagar-22b738273/')} visible={true}></Box>
-            <Box position={[-10,16,-342]} scale={[0.1,6,5]}  onClick={()=>window.open('https://github.com/Pariitosh')} visible={true}></Box>
+            <Box position={[-10,15.8,-326.2]} scale={[0.1,8.6,11.5]}  onClick={()=>window.open('mailto:paritoshsagar25@gmail.com')} visible={false}></Box>
+            <Box position={[-10,15.7,-340]} scale={[0.1,8.6,11.5]}  onClick={()=>window.open('https://www.linkedin.com/in/paritosh-sagar-22b738273/')} visible={false}></Box>
+            <Box position={[-10,15.5,-353]} scale={[0.1,9.4,10]}  onClick={()=>window.open('https://github.com/Pariitosh')} visible={false}></Box>
 
             <RoadEnd scale={[5,6,5]} position={[-45,1.45,-400]} rotation={[0,0,-2*(Math.PI/180)]}/>
             <RoadEnd scale={[5,6,5]} position={[-37,0.1,-400]}/>

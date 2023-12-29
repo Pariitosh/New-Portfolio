@@ -14,10 +14,8 @@ export default function Lamps(){
     <Lamp position={[11, 0, -28]}></Lamp>
     <Lamp position={[-11, 0, -35]}></Lamp>
     <Lamp position={[11, 0, -35]}></Lamp>
-    <Lamp position={[-11, 0, -42]}></Lamp>
-    <Lamp position={[11, 0, -42]}></Lamp>
-    <Lamp position={[-11, 0, -49]}></Lamp>
-    <Lamp position={[11, 0, -49]}></Lamp>
+   
+    
     <Lamp position={[-11, 0, 0]}></Lamp>
     <Lamp position={[11, 0, 0]}></Lamp>
     <Lamp position={[-11, 0, 7]}></Lamp>
