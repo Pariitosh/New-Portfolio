@@ -16,17 +16,14 @@ export default function App() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     const userAgent = navigator.userAgent;  // to check mobile
-    const mobileKeywords = [
-      'Android',
-      'webOS',
-      'iPhone',
-      'iPad',
-      'iPod',
-      'BlackBerry',
-      'Windows Phone'
-    ];
+    const mobileKeywords = ['Android','webOS','iPhone','iPad','iPod','BlackBerry','Windows Phone'];
     const isMobileDevice = mobileKeywords.some(keyword => userAgent.includes(keyword));
     setIsMobile(isMobileDevice);
+    const preventScroll=(e)=>{
+      e.preventDefault()
+    }
+    window.addEventListener('wheel', preventScroll, { passive: false });
+
     }, []);
     const [isWPressed, setIsWPressed] = useState(false);
     const [isSPressed, setIsSPressed] = useState(false);
@@ -114,8 +111,7 @@ export default function App() {
     const handleResize=()=>{
       setHeight(window.innerHeight)
       setWidth(window.innerWidth)
-      if (height<width) setMode('portrait')
-      if (width<height) setMode('landscape')
+      
     }
     useEffect(()=>{
       
@@ -125,8 +121,9 @@ export default function App() {
     const navbar=useRef()
     const options=useRef()
     const buttons=useRef()
+    useEffect(()=>{console.log('w s pressed')},[isWPressed,isSPressed])
     return (
-      // 
+      //
         <>
         {height>width&&
           <>
@@ -163,7 +160,7 @@ export default function App() {
           <Stars  radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1}/>
 
               <PerspectiveCamera  ref={MainCamera}   position={[0, -7, -150]} >
-                <CameraControls  minZoom={0.01} maxZoom={0.01} minPolarAngle={155*(Math.PI/180)} maxPolarAngle={145*(Math.PI/180)} minAzimuthAngle={0*(Math.PI/180)} maxAzimuthAngle={0*(Math.PI/180)}  ref={orbit}   ></CameraControls>
+                <CameraControls  maxDistance={12.5} minDistance={12}  minPolarAngle={155*(Math.PI/180)} maxPolarAngle={145*(Math.PI/180)} minAzimuthAngle={0*(Math.PI/180)} maxAzimuthAngle={0*(Math.PI/180)}  ref={orbit}   ></CameraControls>
 
                 <Experience buttons={buttons} navbar={navbar} place={place} mobile={isMobile} isSPressed={isSPressed} isWPressed={isWPressed} st={10} controlcam={orbit} cam={MainCamera}>
 

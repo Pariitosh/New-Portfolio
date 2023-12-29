@@ -66,6 +66,8 @@ import _ from "lodash";
                     gsap.to(cam.current.position,{z:90,duration:0.5})
                     gsap.to(CarRef.current.position,{x:-5})
                     controlcam.current.setLookAt(17,8,-10,-10,8,-10,true)
+                    controlcam.current.minDistance=cam.current.position.x+12
+                    controlcam.current.maxDistance=cam.current.position.x+30
                 }
                 if (place==='projects')
                 {
@@ -75,6 +77,8 @@ import _ from "lodash";
                     gsap.to(cam.current.position,{z:168,duration:0.5})
                     gsap.to(CarRef.current.position,{x:-5})
                     controlcam.current.setLookAt(17,8,-10,-10,8,-10,true)
+                    controlcam.current.minDistance=cam.current.position.x+12
+                    controlcam.current.maxDistance=cam.current.position.x+30
                 }
                 if (place==='skills')
                 {
@@ -84,6 +88,8 @@ import _ from "lodash";
                     gsap.to(cam.current.position,{z:248,duration:0.5})
                     gsap.to(CarRef.current.position,{x:-5})
                     controlcam.current.setLookAt(17,8,-10,-10,8,-10,true)
+                    controlcam.current.minDistance=cam.current.position.x+12
+                    controlcam.current.maxDistance=cam.current.position.x+30
                 }
                 if (place==='connect')
                 {
@@ -93,6 +99,8 @@ import _ from "lodash";
                     gsap.to(cam.current.position,{z:328,duration:0.5})
                     gsap.to(CarRef.current.position,{x:-5})
                     controlcam.current.setLookAt(17,8,-10,-10,8,-10,true)
+                    controlcam.current.minDistance=cam.current.position.x+12
+                    controlcam.current.maxDistance=cam.current.position.x+30
                 }  
         }
     },[place])
@@ -100,11 +108,14 @@ import _ from "lodash";
         controlcam.current.setLookAt(0, -2.5,4.5,0,8.5,0,true)
         
     },[])
+    
     const enter = () => {
         // clicked on step in 
         // look in front
         console.log(controlcam)
         controlcam.current.setLookAt(0, 0,5,0,0,0,true)
+        controlcam.current.maxDistance=0
+        controlcam.current.minDistance=6
         controlcam.current.minPolarAngle=90*(Math.PI/180)
         controlcam.current.maxPolarAngle=90*(Math.PI/180)
         controlcam.current.minAzimuthAngle=0*(Math.PI/180)
@@ -158,6 +169,7 @@ import _ from "lodash";
     
     // set cam look at and move car
     const moveAndSetCamera=(lpx,lpy,lpz,tpx,tpy,tpz,mid,minAngle,maxAngle)=>{
+        
         cam.current.position.z += 0.40
         CarRef.current.position.z -= 0.407
         gsap.to(CarRef.current.position,{x:mid,duration:1})
@@ -166,7 +178,6 @@ import _ from "lodash";
         controlcam.current.minAzimuthAngle=maxAngle*(Math.PI/180)
     }
         const moveAndSetCameraForS=(lpx,lpy,lpz,tpx,tpy,tpz,mid,minAngle,maxAngle)=>{
-            
             cam.current.position.z -= 0.40
             CarRef.current.position.z += 0.407
             gsap.to(CarRef.current.position,{x:mid,duration:1})
@@ -188,23 +199,32 @@ import _ from "lodash";
             
             if (CarRef.current.position.z<-77 && CarRef.current.position.z>-120){ // car at about billboard 
                 moveAndSetCamera(17,8,cam.current.position.z-100,-10,10.5,cam.current.position.z-100,-5,0,90)
+                controlcam.current.minDistance=cam.current.position.z-55
+                controlcam.current.maxDistance=cam.current.position.z-45
                 
             }
             else if (CarRef.current.position.z<-155 && CarRef.current.position.z>-198) {  // car at projects billboard
                 moveAndSetCamera(17,8,cam.current.position.z-180,-10,10.5,cam.current.position.z-180,-5,0,90)
+                controlcam.current.minDistance=cam.current.position.z-55
+                controlcam.current.maxDistance=cam.current.position.z-45
                 
             }
             else if (CarRef.current.position.z<-233 && CarRef.current.position.z>-276) {  // car at skills billboard
                 moveAndSetCamera(17,8,cam.current.position.z-260,-10,10.5,cam.current.position.z-260,-5,0,90)
+                controlcam.current.minDistance=cam.current.position.z-55
+                controlcam.current.maxDistance=cam.current.position.z-45
                 
             }
             else if (CarRef.current.position.z<-311 && CarRef.current.position.z>-354) {  // car at connect billboard
                 moveAndSetCamera(17,8,cam.current.position.z-340,-10,10.5,cam.current.position.z-340,-5,0,90)
+                controlcam.current.minDistance=cam.current.position.z-55
+                controlcam.current.maxDistance=cam.current.position.z-45
                 
             }
             else { // car not at billboard
                 moveAndSetCamera(4,0,2,CarRef.current.position.x-10,CarRef.current.position.y,CarRef.current.position.z,0,0,10)
-                
+                controlcam.current.minDistance=cam.current.position.z+15 //set camera zoom
+                controlcam.current.maxDistance=cam.current.position.z+17
             }
 
 
@@ -220,23 +240,28 @@ import _ from "lodash";
         if (isSPressed && CarRef.current.position.z<-10 && driveable){
             if (CarRef.current.position.z<-81 && CarRef.current.position.z>-120){
                 moveAndSetCameraForS(17,8,cam.current.position.z-100,-10,10.5,cam.current.position.z-100,-5,0,90)
-                
+                controlcam.current.minDistance=cam.current.position.z-55
+                controlcam.current.maxDistance=cam.current.position.z-45
             }
             else if (CarRef.current.position.z<-159 && CarRef.current.position.z>-198) {
                 moveAndSetCameraForS(17,8,cam.current.position.z-180,-10,10.5,cam.current.position.z-180,-5,0,90)
-                
+                controlcam.current.minDistance=cam.current.position.z-55
+                controlcam.current.maxDistance=cam.current.position.z-45
             }
             else if (CarRef.current.position.z<-237 && CarRef.current.position.z>-276) {
                 moveAndSetCameraForS(17,8,cam.current.position.z-260,-10,10.5,cam.current.position.z-260,-5,0,90)
-                
+                controlcam.current.minDistance=cam.current.position.z-55
+                controlcam.current.maxDistance=cam.current.position.z-45
             }
             else if (CarRef.current.position.z<-315 && CarRef.current.position.z>-354) {
                 moveAndSetCameraForS(17,8,cam.current.position.z-340,-10,10.5,cam.current.position.z-340,-5,0,90)
-                
+                controlcam.current.minDistance=cam.current.position.z-55
+                controlcam.current.maxDistance=cam.current.position.z-45
             }
             else {
                 moveAndSetCameraForS(4,0,2,CarRef.current.position.x-10,CarRef.current.position.y,CarRef.current.position.z,0,0,10)
-                
+                controlcam.current.minDistance=cam.current.position.z+15
+                controlcam.current.maxDistance=cam.current.position.z+17
             }
         }
     })
@@ -263,7 +288,12 @@ import _ from "lodash";
         {/*<Skills / >*/}
             <Road scale={[3.5,1,15]} position={[0,0.1,-65]}/>
             <Road scale={[3.5,1,15]} position={[0,0.1,-250]}/>
-            <MainCar moving={moving}  w={isWPressed} s={isSPressed} car={CarRef}
+            <MainCar onClick={()=>{
+                console.log('main cam position is', cam.current.position)
+                console.log('control cam position is', controlcam.current.position)
+                console.log('maxdistance is',controlcam.current.maxDistance)
+                console.log('mindistance is',controlcam.current.minDistance)
+            }}  moving={moving}  w={isWPressed} s={isSPressed} car={CarRef}
             position={[0,0,-50]} ref={CarRef}  rotation={[0,-110 * (Math.PI / 180),0]}
 
             />
@@ -281,14 +311,14 @@ import _ from "lodash";
             <Box position={[-10,21.2,-185]} scale={[0.1,16.3,9.5]}  onClick={()=>window.open('https://www.google.com/')} visible={false}></Box>
             <Box position={[-10,21.2,-195.1]} scale={[0.1,16.3,9.5]}  onClick={()=>window.open('https://www.google.com/')} visible={false}></Box>
 
-            <Image url='about.png' scale={[42,17.5,1]} position={[-10,15,-100]} rotation={[0,90*(Math.PI/180),0]}/>
+            <Image url='about.jpg' scale={[42,17.5,1]} position={[-10,15,-100]} rotation={[0,90*(Math.PI/180),0]}/>
             <Image url='skills.jpg' scale={[42,17.5,1]} position={[-10,15,-260]} rotation={[0,90*(Math.PI/180),0]}/>
             <Image url='projects.jpg' scale={[42,17.5,1]} position={[-10,15,-180]} rotation={[0,90*(Math.PI/180),0]}/>
             <Image url='connect.jpg' scale={[42,17.5,1]} position={[-10,15,-340]} rotation={[0,90*(Math.PI/180),0]}/>
 
-            <Box position={[0,16,-330]} scale={[0.1,6,5]}  onClick={()=>window.open('mailto:paritoshsagar25@gmail.com')} visible={false}></Box>
-            <Box position={[0,16,-336]} scale={[0.1,6,5]}  onClick={()=>window.open('https://www.linkedin.com/in/paritosh-sagar-22b738273/')} visible={false}></Box>
-            <Box position={[0,16,-342]} scale={[0.1,6,5]}  onClick={()=>window.open('https://github.com/Pariitosh')} visible={false}></Box>
+            <Box position={[-10,16,-326]} scale={[0.1,6,5]}  onClick={()=>window.open('mailto:paritoshsagar25@gmail.com')} visible={true}></Box>
+            <Box position={[-10,16,-336]} scale={[0.1,6,5]}  onClick={()=>window.open('https://www.linkedin.com/in/paritosh-sagar-22b738273/')} visible={true}></Box>
+            <Box position={[-10,16,-342]} scale={[0.1,6,5]}  onClick={()=>window.open('https://github.com/Pariitosh')} visible={true}></Box>
 
             <RoadEnd scale={[5,6,5]} position={[-45,1.45,-400]} rotation={[0,0,-2*(Math.PI/180)]}/>
             <RoadEnd scale={[5,6,5]} position={[-37,0.1,-400]}/>
