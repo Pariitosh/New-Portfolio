@@ -15,6 +15,8 @@ import { Billboard } from "./Billboard";
 import RoadEnd from "./RoadEnd.jsx";
 import _ from "lodash";
     export default function Experience({buttons,cam,controlcam,isWPressed,isSPressed,place,navbar,tutorial}) {
+    
+    
     const [driveable,setDriveable]=useState(false)
     const line1 = useRef();
     const line2 = useRef();
