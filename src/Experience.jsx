@@ -306,10 +306,10 @@ import _ from "lodash";
             <Billboard position={[-10,-15,-260]}/>
             <Billboard position={[-10,-15,-340]}/>
             
-            <Box onPointerOver={()=>document.body.style.cursor="pointer"} onPointerLeave={()=>document.body.style.cursor="auto"} position={[-10,21.2,-164.7]} scale={[0.1,16.3,9.5]}  onClick={()=>window.open('https://chat-rumble.vercel.app/')} visible={false}></Box>
-            <Box onPointerOver={()=>document.body.style.cursor="pointer"} onPointerLeave={()=>document.body.style.cursor="auto"} position={[-10,21.2,-174.9]} scale={[0.1,16.3,9.5]}  onClick={()=>window.open('https://pariitosh.vercel.app/')} visible={false}></Box>
-            <Box onPointerOver={()=>document.body.style.cursor="pointer"} onPointerLeave={()=>document.body.style.cursor="auto"} position={[-10,21.2,-185]} scale={[0.1,16.3,9.5]}  onClick={()=>window.open('https://market--insider.vercel.app/')} visible={false}></Box>
-            <Box onPointerOver={()=>document.body.style.cursor="pointer"} onPointerLeave={()=>document.body.style.cursor="auto"} position={[-10,21.2,-195.1]} scale={[0.1,16.3,9.5]}  onClick={()=>window.open('https://pariitosh.github.io/Pala/#/')} visible={false}></Box>
+            <Box onPointerOver={()=>document.body.style.cursor="pointer"} onPointerLeave={()=>document.body.style.cursor="auto"} position={[-10,15,-164.7]} scale={[0.1,16.3,9.5]}  onClick={()=>window.open('https://chat-rumble.vercel.app/')} visible={false}></Box>
+            <Box onPointerOver={()=>document.body.style.cursor="pointer"} onPointerLeave={()=>document.body.style.cursor="auto"} position={[-10,15,-174.9]} scale={[0.1,16.3,9.5]}  onClick={()=>window.open('https://pariitosh.vercel.app/')} visible={false}></Box>
+            <Box onPointerOver={()=>document.body.style.cursor="pointer"} onPointerLeave={()=>document.body.style.cursor="auto"} position={[-10,15,-185]} scale={[0.1,16.3,9.5]}  onClick={()=>window.open('https://market--insider.vercel.app/')} visible={false}></Box>
+            <Box onPointerOver={()=>document.body.style.cursor="pointer"} onPointerLeave={()=>document.body.style.cursor="auto"} position={[-10,15,-195.1]} scale={[0.1,16.3,9.5]}  onClick={()=>window.open('https://pariitosh.github.io/Pala/#/')} visible={false}></Box>
 
             {!navigator.maxTouchPoints>0 && <Image ref={tutorialimg}  url='Frame 16.png' scale={[15,5,1]} position={[-10,10,-50]} rotation={[0,50*(Math.PI/180),0]}/>}
 
