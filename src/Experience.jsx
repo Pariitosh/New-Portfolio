@@ -269,7 +269,8 @@ import _ from "lodash";
             }
         }
     })
-   
+   //<Box position={[-10,15.7,-340]} scale={[0.1,8.6,11.5]}  onClick={()=>window.open('https://www.linkedin.com/in/paritosh-sagar-22b738273/')} visible={false}></Box>
+   //<Box position={[-10,15.5,-353]} scale={[0.1,9.4,10]}  onClick={()=>window.open('https://github.com/Pariitosh')} visible={false}></Box>
     return (
         <>
 
@@ -316,11 +317,10 @@ import _ from "lodash";
             <Image url='about.jpg' scale={[42,17.5,1]} position={[-10,15,-100]} rotation={[0,90*(Math.PI/180),0]}/>
             <Image url='skills.jpg' scale={[42,17.5,1]} position={[-10,15,-260]} rotation={[0,90*(Math.PI/180),0]}/>
             <Image url='projects.jpg' scale={[42,17.5,1]} position={[-10,15,-180]} rotation={[0,90*(Math.PI/180),0]}/>
-            <Image url='connect.jpg' scale={[42,17.5,1]} position={[-10,15,-340]} rotation={[0,90*(Math.PI/180),0]}/>
+            <Image url='Frame 5.jpg' scale={[42,17.5,1]} position={[-10,15,-340]} rotation={[0,90*(Math.PI/180),0]}/>
 
-            <Box position={[-10,15.8,-326.2]} scale={[0.1,8.6,11.5]}  onClick={()=>window.open('mailto:paritoshsagar25@gmail.com')} visible={false}></Box>
-            <Box position={[-10,15.7,-340]} scale={[0.1,8.6,11.5]}  onClick={()=>window.open('https://www.linkedin.com/in/paritosh-sagar-22b738273/')} visible={false}></Box>
-            <Box position={[-10,15.5,-353]} scale={[0.1,9.4,10]}  onClick={()=>window.open('https://github.com/Pariitosh')} visible={false}></Box>
+            <Box position={[-10,15.8,-340]} scale={[0.1,8.6,11.5]}  onClick={()=>window.open('mailto:paritoshsagar25@gmail.com')} visible={false}></Box>
+            
 
             <RoadEnd scale={[5,6,5]} position={[-45,1.45,-400]} rotation={[0,0,-2*(Math.PI/180)]}/>
             <RoadEnd scale={[5,6,5]} position={[-37,0.1,-400]}/>
