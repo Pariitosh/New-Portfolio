@@ -14,7 +14,7 @@ export default function Balls({row1,row2,row3,row4,row5,row6,row7,row8,row9,row1
     return(
         <>
             <EffectComposer
-        enabled={GPUTier.tier===1?true:false}
+        enabled={GPUTier.fps>30?true:false}
         depthBuffer={true}
         disableNormalPass={false}
         stencilBuffer={false}

@@ -119,7 +119,8 @@ export default function App() {
           <>
             <div style={{fontSize:"3vw",color:'white',position:"absolute",zIndex:"1", height:'100vh',width:"100vw",backgroundColor:'black',display:'flex',justifyContent:"center",alignItems:"center",flexDirection:"column",gap:'2vh'}} >
             <h1>Please rotate your device</h1>
-            <img src='smartphone.png' height='40vh' width='40vw'></img> 
+            <div className='phone'></div>
+             
             </div>
           </>
           }
@@ -146,11 +147,12 @@ export default function App() {
             </div>
           </div>
           }
+          {/* truckSpeed={0} maxDistance={12.5} minDistance={12} minPolarAngle={155*(Math.PI/180)} maxPolarAngle={145*(Math.PI/180)} minAzimuthAngle={0*(Math.PI/180)} maxAzimuthAngle={0*(Math.PI/180)}  */}
           <Canvas shadows style={{background:'#030114'}}>
           <Stars  radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1}/>
 
               <PerspectiveCamera  ref={MainCamera}   position={[0, -7, -150]} >
-                <CameraControls truckSpeed={0} maxDistance={12.5} minDistance={12} minPolarAngle={155*(Math.PI/180)} maxPolarAngle={145*(Math.PI/180)} minAzimuthAngle={0*(Math.PI/180)} maxAzimuthAngle={0*(Math.PI/180)}    ref={orbit}   ></CameraControls>
+                <CameraControls    ref={orbit}   ></CameraControls>
 
                 <Experience  buttons={buttons} navbar={navbar} place={place}  isSPressed={isSPressed} isWPressed={isWPressed} st={10} controlcam={orbit} cam={MainCamera} tutorial={tutorial}>
 

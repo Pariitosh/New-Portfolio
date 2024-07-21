@@ -52,6 +52,24 @@
 #last{
   border-radius: 0px 0px 30px 0px;
 }
+.phone{
+  height: 100px;
+  width: 50px;
+  border: 2px solid white;
+  border-radius: 10px;
+  animation: rotatePhone 1.5s ease-in-out infinite alternate;
+}
+@keyframes rotatePhone{
+  0% {
+		transform: rotate(90deg)
+	}
+	50% {
+		transform: rotate(0deg)
+	}
+	100% {
+		transform: rotate(0deg)
+	}
+}
 @media only screen and (max-height: 767px) and (orientation: landscape) { 
     .outer{
       display: flex;
