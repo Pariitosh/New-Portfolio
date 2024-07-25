@@ -16,6 +16,7 @@
     "@react-three/rapier": "^1.1.1",
     "@types/three": "^0.156.0",
     "@vercel/analytics": "^1.1.1",
+    "@vercel/speed-insights": "^1.0.12",
     "framer-motion-3d": "^10.16.4",
     "gsap": "^3.12.2",
     "leva": "^0.9.35",
