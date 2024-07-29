@@ -6,7 +6,21 @@
   margin: 0;
   padding: 0;
 }
+#canvas-container{
+  height: 300vh;
+  width: 100%;
+  z-index: 69;
+  position: absolute;
+  overflow: hidden;
+}
 
+#canvas{
+  height: 100vh;
+ 
+}
+body{
+  /* height: 300vh; */
+}
 .outer{
   font-family: tangerine;
   position: absolute;

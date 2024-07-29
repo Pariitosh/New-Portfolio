@@ -3,15 +3,16 @@
 import './index.css'
 import {Canvas} from "@react-three/fiber"
 import Experience from './Experience'
-import {Environment, PerspectiveCamera, Loader, Stars, CameraControls} from '@react-three/drei'
+import { useControls } from 'leva';
+import {PerspectiveCamera, Loader, Stars, CameraControls} from '@react-three/drei'
 import {useEffect, useRef, useState,} from 'react'
 export default function App() {
   const MainCamera=useRef()
   const orbit=useRef()
-  
     const [isWPressed, setIsWPressed] = useState(false);
     const [isSPressed, setIsSPressed] = useState(false);
     const [tutorial,setTutorial]=useState(true)
+    const environment=useRef()
     useEffect(() => {
       const handleKeyDown = (event) => {  // check w s or up down arrow
         if (event.key === 'w' || event.key === 'W' || event.keyCode===38)
@@ -110,8 +111,9 @@ export default function App() {
     const navbar=useRef()
     const options=useRef()
     const buttons=useRef()
+   
     
-    
+
     return (
       //
         <>
@@ -147,22 +149,24 @@ export default function App() {
             </div>
           </div>
           }
-           
-          <Canvas shadows style={{background:'#030114'}}>
+           {/* truckSpeed={0} maxDistance={12.5} minDistance={12} minPolarAngle={155*(Math.PI/180)} maxPolarAngle={145*(Math.PI/180)} minAzimuthAngle={0*(Math.PI/180)} maxAzimuthAngle={0*(Math.PI/180)} */}
+           <div id='canvas-container'>
+
+           </div>
+          <Canvas id='canvas' shadows gl={{ shadowMapEnabled: true }} style={{background:'#030114'}}>
           <Stars  radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1}/>
-
-              <PerspectiveCamera  ref={MainCamera}   position={[0, -7, -150]} >
-                <CameraControls  truckSpeed={0} maxDistance={12.5} minDistance={12} minPolarAngle={155*(Math.PI/180)} maxPolarAngle={145*(Math.PI/180)} minAzimuthAngle={0*(Math.PI/180)} maxAzimuthAngle={0*(Math.PI/180)}  ref={orbit}   ></CameraControls>
-
-                <Experience  buttons={buttons} navbar={navbar} place={place}  isSPressed={isSPressed} isWPressed={isWPressed} st={10} controlcam={orbit} cam={MainCamera} tutorial={tutorial}>
+          
+          
+              <PerspectiveCamera lookAt={[0,50,0]} ref={MainCamera}  position={[0, -7, -150]} >
+                <CameraControls    ref={orbit}   ></CameraControls>
+              
+                <Experience   buttons={buttons} navbar={navbar} place={place}  isSPressed={isSPressed} isWPressed={isWPressed} st={10} controlcam={orbit} cam={MainCamera} tutorial={tutorial}>
 
                 </Experience>
               </PerspectiveCamera>
-              <Environment
-                  files={'kloofendal_overcast_puresky_1k.hdr'}
-                  background={false}
-              />
+             
           </Canvas>
+          
           <Loader containerStyles={{backgroundColor:"black",justifyContent:"center"}} barStyles={{marginBottom:"10dvh",width:"90dvw"}} innerStyles={{justifyContent:"center",width:"90dvw",top:'40vh',position:'relative'}} />
         </>
           
