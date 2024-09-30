@@ -4,7 +4,7 @@ import { Billboard } from "./Billboard";
 export default function Billboards() {
     const handleDownload = () => {
         const link = document.createElement('a');
-        link.href = 'Paritosh Resume.pdf';
+        link.href = 'new_resume-1.pdf';
         link.download = 'Paritosh_Resume';
         document.body.appendChild(link);
         link.click();
