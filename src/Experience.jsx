@@ -357,7 +357,7 @@ export default function Experience({buttons, cam, controlcam, isWPressed, isSPre
             <Text3D position={[-11, 24, -87]} scale={[6, 5, 4]} rotation={[0, 90 * (Math.PI / 180), 0]} font={'Montserrat Light_Italic.json'}>About<meshBasicMaterial toneMapped={true} color={[255, 255, 255]} reflectivity={0} /></Text3D>
             <Text3D position={[-11, 25, -155]} scale={[4, 4, 4]} rotation={[0, 90 * (Math.PI / 180), 0]} font={'Inter_Regular.json'}>Past work/Projects<meshBasicMaterial toneMapped={true} color={[255, 255, 255]} reflectivity={0} /></Text3D>
             <Text3D position={[-11, 24.1, -250]} scale={[6, 5, 4]} rotation={[0, 90 * (Math.PI / 180), 0]} font={'Montserrat Light_Italic.json'}>Skills<meshBasicMaterial toneMapped={true} color={[255, 255, 255]} reflectivity={0} /></Text3D>
-            {/* <Text3D position={[-11, 24.5, -322]} scale={[6, 5, 4]} rotation={[0, 90 * (Math.PI / 180), 0]} font={'Montserrat Light_Italic.json'}>Connect<meshBasicMaterial toneMapped={true} color={[255, 255, 255]} reflectivity={0} /></Text3D> */}
+            <Text3D position={[-11, 24.5, -322]} scale={[6, 5, 4]} rotation={[0, 90 * (Math.PI / 180), 0]} font={'Montserrat Light_Italic.json'}>Connect<meshBasicMaterial toneMapped={true} color={[255, 255, 255]} reflectivity={0} /></Text3D>
             
             <directionalLight ref={dlight} intensity={0} position={[1,26,141]} castShadow color={'white'} />
             
