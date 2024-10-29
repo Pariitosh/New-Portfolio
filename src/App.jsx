@@ -143,9 +143,9 @@ export default function App() {
               <div onClick={()=>setPlace('skills')} className='option'>
                 <h1 ref={options}>Skills</h1>
               </div>
-              <div onClick={()=>setPlace('connect')} className='option' id='last'>
+              {/* <div onClick={()=>setPlace('connect')} className='option' id='last'>
                 <h1 ref={options}>Connect</h1>
-              </div>
+              </div> */}
             </div>
           </div>
           }

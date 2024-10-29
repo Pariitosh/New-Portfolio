@@ -15,7 +15,7 @@ export default function Billboards() {
             <Billboard position={[-10, -15, -100]} />
             <Billboard position={[-10, -15, -180]} />
             <Billboard position={[-10, -15, -260]} />
-            <Billboard position={[-10, -15, -340]} />
+            {/* <Billboard position={[-10, -15, -340]} /> */}
 
             <Box onPointerOver={() => document.body.style.cursor = "pointer"} onPointerLeave={() => document.body.style.cursor = "auto"} position={[-10, 15, -164.7]} scale={[0.1, 16.3, 9.5]} onClick={() => window.open('https://www.nuchainscan.com/')} visible={false}></Box>
             <Box onPointerOver={() => document.body.style.cursor = "pointer"} onPointerLeave={() => document.body.style.cursor = "auto"} position={[-10, 15, -174.9]} scale={[0.1, 16.3, 9.5]} onClick={() => window.open('https://chat-rumble.vercel.app/')} visible={false}></Box>
@@ -31,7 +31,7 @@ export default function Billboards() {
             <Image url='about.jpg' scale={[42, 17.5, 1]} position={[-10, 15, -100]} rotation={[0, 90 * (Math.PI / 180), 0]} />
             <Image url='skills.jpg' scale={[42, 17.5, 1]} position={[-10, 15, -260]} rotation={[0, 90 * (Math.PI / 180), 0]} />
             <Image url='projects.jpg' scale={[42, 17.5, 1]} position={[-10, 15, -180]} rotation={[0, 90 * (Math.PI / 180), 0]} />
-            <Image url='connect.jpg' scale={[42, 17.5, 1]} position={[-10, 15, -340]} rotation={[0, 90 * (Math.PI / 180), 0]} />
+            {/* <Image url='connect.jpg' scale={[42, 17.5, 1]} position={[-10, 15, -340]} rotation={[0, 90 * (Math.PI / 180), 0]} /> */}
         </>
     )
 }
