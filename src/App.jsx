@@ -143,16 +143,14 @@ export default function App() {
               <div onClick={()=>setPlace('skills')} className='option'>
                 <h1 ref={options}>Skills</h1>
               </div>
-              {/* <div onClick={()=>setPlace('connect')} className='option' id='last'>
+              <div onClick={()=>setPlace('connect')} className='option' id='last'>
                 <h1 ref={options}>Connect</h1>
-              </div> */}
+              </div>
             </div>
           </div>
           }
            {/*  */}
-           <div id='canvas-container'>
-
-           </div>
+           
           <Canvas id='canvas' shadows gl={{ shadowMapEnabled: true }} style={{background:'#030114'}}>
           <Stars  radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1}/>
           

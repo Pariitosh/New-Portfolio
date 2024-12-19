@@ -60,7 +60,6 @@ export default function Experience({buttons, cam, controlcam, isWPressed, isSPre
     const { scrollYProgress } = useScroll();
 
     useEffect(() => {
-        document.addEventListener('click',()=>console.log(scrollYProgress.current,'asas'))
         // for navbar navigation
       
         if (driveable) {
@@ -117,88 +116,57 @@ export default function Experience({buttons, cam, controlcam, isWPressed, isSPre
             }
         }
     }, [place])
-    useGSAP(
-        () => {
-            const enter = () => {
+    
+
+
+    const enter = () => {
         
-                setStarted(false)
-                document.body.style.height='100vh'
-                
-                gsap.to(dlight.current,{intensity:15,duration:3})
-               
-                _.delay(()=>{
-                    elements.forEach((element, index) => {
-                        gsap.to(element.current.scale, {
-                          x: 0.4,
-                          y: 0.4,
-                          z: 0.4,
-                          duration: 0.1,
-                          delay: index * 0.05 // Adjust the multiplier to control the delay increment
-                        });
-                      });
-                },2000)
-                
-                // clicked on step in 
-                // look in front
+        gsap.to(line3.current.position, { x: 10 })
+        setStarted(false)
+        document.body.style.height='100vh'
         
-                //controlcam.current.setLookAt(0, 0, 5, 0, 0, 0, true)
-                //controlcam.current.maxDistance = 0
-                //controlcam.current.minDistance = 40
-                //controlcam.current.minPolarAngle = 90 * (Math.PI / 180)
-                //controlcam.current.maxPolarAngle = 90 * (Math.PI / 180)
-                //controlcam.current.minAzimuthAngle = 0 * (Math.PI / 180)
-                //controlcam.current.maxAzimuthAngle = 5 * (Math.PI / 180)
-                //move text       
-                // turn on lights
-                // move camera
-                
-                gsap.to(cam.current.position,{z:38,duration: 4, ease: 'power2.in', delay: 5})
-                _.delay(() => {
-                    // show navbar and buttons
-                    document.getElementById('canvas-container').style.zIndex=-1
-                    gsap.to(lightOnCar.current,{intensity:4000})
-                    gsap.to(dlight.current,{intensity:0})
-                    controlcam.current.setLookAt(8, -1, 0, -15, 5, -30, true)
-                    setDriveable(true)
-                    gsap.to(buttons.current, { opacity: 0.7 })
-                    gsap.to(navbar.current, { y: '14.9dvh', duration: 1 })
-                    
-                }, 9200)
-            }
-            // gsap code here...
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                  trigger: "#canvas-container",
-                  start: "top top",
-                  end: "bottom bottom",
-                  scrub: true,
-                  markers: false,
-                  
-                },
-              onComplete:enter
+        gsap.to(dlight.current,{intensity:15,duration:3})
+       
+        _.delay(()=>{
+            elements.forEach((element, index) => {
+                gsap.to(element.current.scale, {
+                  x: 0.4,
+                  y: 0.4,
+                  z: 0.4,
+                  duration: 0.1,
+                  delay: index * 0.05 // Adjust the multiplier to control the delay increment
+                });
               });
+        },2000)
         
-              tl.to(line1.current.position, {x:14,duration: 1,ease: "power2.inOut"}, 0)
-              tl.to(line2.current.position, {x:-14,duration: 1,ease: "power2.inOut"}, 0)
-              tl.to(line3.current.position, {x:14,duration: 1,ease: "power2.inOut"}, 0)
-        },
+        // clicked on step in 
+        // look in front
+
+        //controlcam.current.setLookAt(0, 0, 5, 0, 0, 0, true)
+        //controlcam.current.maxDistance = 0
+        //controlcam.current.minDistance = 40
+        //controlcam.current.minPolarAngle = 90 * (Math.PI / 180)
+        //controlcam.current.maxPolarAngle = 90 * (Math.PI / 180)
+        //controlcam.current.minAzimuthAngle = 0 * (Math.PI / 180)
+        //controlcam.current.maxAzimuthAngle = 5 * (Math.PI / 180)
+        //move text       
+        // turn on lights
+        // move camera
         
-    );
-    useEffect(() => {
-        if(scrollYProgress.current===1){
-            // enter()
-        }
-        document.body.style.height='300vh'
-      
-          
-          
-        //controlcam.current.setLookAt(0, -2.5, 4.5, 0, 8.5, 0, true) //initial camera look at
-    }, [])
-    useEffect(()=>{
-        if(cam.current.position.z<150){
+        gsap.to(cam.current.position,{z:38,duration: 4, ease: 'power2.in', delay: 5})
+        _.delay(() => {
+            // show navbar and buttons
+            gsap.to(lightOnCar.current,{intensity:4000})
+            gsap.to(dlight.current,{intensity:0})
+            controlcam.current.setLookAt(8, -1, 0, -15, 5, -30, true)
+            setDriveable(true)
+            gsap.to(buttons.current, { opacity: 0.7 })
+            gsap.to(navbar.current, { y: '14.9dvh', duration: 1 })
             
-        }
-    },[scrollYProgress.current])
+        }, 9200)
+    }
+    
+    
     const tutorialimg = useRef()
    
     const moveTutBtn = () => {
@@ -305,18 +273,18 @@ export default function Experience({buttons, cam, controlcam, isWPressed, isSPre
             }
         }
     })
-    const enterHover = () => {
-        document.body.style.cursor = "pointer"
-        gsap.to(line3.current.scale, { x: 1.2 })
-        gsap.to(line3.current.scale, { y: 1.2 })
-        gsap.to(line3.current.scale, { z: 1.2 })
-    }
-    const enterLeave = () => {
-        document.body.style.cursor = "auto"
-        gsap.to(line3.current.scale, { x: 1 })
-        gsap.to(line3.current.scale, { y: 1 })
-        gsap.to(line3.current.scale, { z: 1 })
-    }
+    // const enterHover = () => {
+    //     document.body.style.cursor = "pointer"
+    //     gsap.to(line3.current.scale, { x: 1.2 })
+    //     gsap.to(line3.current.scale, { y: 1.2 })
+    //     gsap.to(line3.current.scale, { z: 1.2 })
+    // }
+    // const enterLeave = () => {
+    //     document.body.style.cursor = "auto"
+    //     gsap.to(line3.current.scale, { x: 1 })
+    //     gsap.to(line3.current.scale, { y: 1 })
+    //     gsap.to(line3.current.scale, { z: 1 })
+    // }
     const GPUTier = useDetectGPU()
    
       const lightOnCar=useRef()
@@ -329,9 +297,9 @@ export default function Experience({buttons, cam, controlcam, isWPressed, isSPre
             {started && <>
             <Text color={'white'} font={'Tangerine-Bold.ttf'} fontSize={1.8} position={[0, 9.3, 149]} ref={line1}>Greetings! I'm Paritosh</Text>
             <Text color={'white'} font={'Tangerine-Bold.ttf'} fontSize={1.7} position={[0, 7.2, 149]} ref={line2} >Welcome to my portfolio</Text>
-            <Text color={'white'} font={'Tangerine-Bold.ttf'} fontSize={1.7} position={[0, 5, 149]} ref={line3} >Dive in!</Text>
+            <Text onClick={enter} color={'white'} font={'Tangerine-Bold.ttf'} fontSize={1.7} position={[0, 5, 149]} ref={line3} >Click here to explore</Text>
             </>}
-            <Box visible={false} onPointerOver={enterHover} onPointerLeave={enterLeave} position={[0, 7.5, 151.5]} rotation={[60 * (Math.PI / 180), 0, 0]} scale={[5.5, 1.7, 0.1]} />
+            <Box visible={false}  position={[0, 7.5, 151.5]} rotation={[60 * (Math.PI / 180), 0, 0]} scale={[5.5, 1.7, 0.1]} />
             <Text font="Brie.otf" ref={roadend1} position={[-10, -1, -14]} scale={[2, 2, 2]} rotation={[0, 80 * (Math.PI / 180), 0]}>The road behind is closed! </Text>
             <Text font="Brie.otf" ref={roadend2} position={[-10, -1, -14]} scale={[2, 2, 2]} rotation={[0, 80 * (Math.PI / 180), 0]}>Time to go forward. </Text>
 
@@ -357,7 +325,7 @@ export default function Experience({buttons, cam, controlcam, isWPressed, isSPre
             <Text3D position={[-11, 24, -87]} scale={[6, 5, 4]} rotation={[0, 90 * (Math.PI / 180), 0]} font={'Montserrat Light_Italic.json'}>About<meshBasicMaterial toneMapped={true} color={[255, 255, 255]} reflectivity={0} /></Text3D>
             <Text3D position={[-11, 25, -155]} scale={[4, 4, 4]} rotation={[0, 90 * (Math.PI / 180), 0]} font={'Inter_Regular.json'}>Past work/Projects<meshBasicMaterial toneMapped={true} color={[255, 255, 255]} reflectivity={0} /></Text3D>
             <Text3D position={[-11, 24.1, -250]} scale={[6, 5, 4]} rotation={[0, 90 * (Math.PI / 180), 0]} font={'Montserrat Light_Italic.json'}>Skills<meshBasicMaterial toneMapped={true} color={[255, 255, 255]} reflectivity={0} /></Text3D>
-            {/* <Text3D position={[-11, 24.5, -322]} scale={[6, 5, 4]} rotation={[0, 90 * (Math.PI / 180), 0]} font={'Montserrat Light_Italic.json'}>Connect<meshBasicMaterial toneMapped={true} color={[255, 255, 255]} reflectivity={0} /></Text3D> */}
+            <Text3D position={[-11, 24.5, -322]} scale={[6, 5, 4]} rotation={[0, 90 * (Math.PI / 180), 0]} font={'Montserrat Light_Italic.json'}>Connect<meshBasicMaterial toneMapped={true} color={[255, 255, 255]} reflectivity={0} /></Text3D>
             
             <directionalLight ref={dlight} intensity={0} position={[1,26,141]} castShadow color={'white'} />
             
